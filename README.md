@@ -1,2 +1,2 @@
-# nialime
+# niabeep
 Email Sender GUI
