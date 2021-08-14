@@ -2,8 +2,7 @@ import smtplib, ssl
 import os 
 import getpass
 import json
-import base64
-
+import base64 # maybe? 
 
 # self note: First part of the program idea/concept 
 def checkcreds():
@@ -17,6 +16,8 @@ def checkcreds():
                 gmail_server.login(data['email'], data['password'])
                 resp = True
                 print("Password Correct")
+                gmail_server.quit()
+                sending()
             except:
                 resp = False
                 gmail_server.quit()
@@ -50,6 +51,22 @@ def checkcreds():
 
 
 
+def sending():
+    with open('creds.json') as data:
+        data = json.load(data)
+        recv = input("To: ")
+        subject = input("Subject: ")
+        message = input("Message: ")
+        text = """\
+        {}
+
+        """.format(subject) + message
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(data['email'], data['password'])
+            server.sendmail(data['email'], recv, text)
+            print('Sent')
+        
 
 
 checkcreds()
