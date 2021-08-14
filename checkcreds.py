@@ -8,7 +8,7 @@ import base64
 # self note: First part of the program idea/concept 
 def checkcreds():
     if os.path.exists('creds.json'): # self-note: Write if creds are valid 
-        print('Opening file and testing password config..')
+        print('Testing credentials ')
         with open('creds.json') as data:
             data = json.load(data)
             gmail_server = smtplib.SMTP('smtp.gmail.com:587')
@@ -16,11 +16,11 @@ def checkcreds():
             try:
                 gmail_server.login(data['email'], data['password'])
                 resp = True
-                print("Working..")
+                print("Password Correct")
             except:
                 resp = False
                 gmail_server.quit()
-                print("Not working...")
+                print("Incorrect Password")
                 return resp
     
     else: # self-note: Check servers for validation 
@@ -43,7 +43,7 @@ def checkcreds():
                 output.close()
         except:
             resp = False
-            print('Password Wrong Try Again..')
+            print('Incorrect Password')
 
         gmail_server.quit()
         return resp
