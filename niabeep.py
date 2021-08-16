@@ -16,7 +16,7 @@ class app1:
 
 
     def close_window(self):
-        pass
+        self.master.destroy()
 
     def login(self):
         pass
