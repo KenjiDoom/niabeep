@@ -15,6 +15,9 @@ def closeBox():
 def login():
     pass
 
+def clear_search(event):
+    user.delete(0, tk.END)
+
 # White frame
 window.frame=Frame(window)
 window.frame.place(relx=0.5, rely=0.5, width=250, height=270, anchor="center")
@@ -23,11 +26,11 @@ window.frame.place(relx=0.5, rely=0.5, width=250, height=270, anchor="center")
 # User-name exntry box here
 user = tk.Entry(window, width=20)
 user.insert(0,"Username: ")
+user.bind("<FocusIn>", clear_search)
 user.place(relx=0.5, rely=0.3, anchor="center")
 
 #Password entry box
-password = tk.Entry(window, width=20)
-password.insert(0,"Password: ")
+password = tk.Entry(window, show="*", width=20)
 password.place(relx=0.5, rely=0.4, anchor="center")
 
 # Buttonss to Login and close window
@@ -41,6 +44,5 @@ btn1.place(relx=0.5, rely=0.6, anchor="center")
 
 
 window.mainloop()
-
 
 
