@@ -15,7 +15,7 @@ def closeBox():
 def login():
     pass
 
-def clear_search(event):
+def clear_entry(event): # Clearning Entry Texts 
     user.delete(0, tk.END)
 
 # White frame
@@ -26,7 +26,7 @@ window.frame.place(relx=0.5, rely=0.5, width=250, height=270, anchor="center")
 # User-name exntry box here
 user = tk.Entry(window, width=20)
 user.insert(0,"Username: ")
-user.bind("<FocusIn>", clear_search)
+user.bind("<FocusIn>", clear_entry)
 user.place(relx=0.5, rely=0.3, anchor="center")
 
 #Password entry box
