@@ -1,48 +1,32 @@
-from tkinter.ttk import *
-from tkinter import *
 import tkinter as tk
 
-# Creating the box
-window = Tk()
-window.title('Authentication')
-window.geometry('400x400')
-window.resizable(False, False) # LOL
-window['background']='#1091E4'
+# I have no idea as to what is going on
 
-def closeBox():
-    window.destroy()
-
-def login():
-    pass
-
-def clear_entry(event): # Clearning Entry Texts 
-    user.delete(0, tk.END)
-
-# White frame
-window.frame=Frame(window)
-window.frame.place(relx=0.5, rely=0.5, width=250, height=270, anchor="center")
+class app1:
+    def __init__(self, master):
+        self.master = master
+        self.frame = tk.Frame(self.master)
+        self.master['background']='#1091E4'
+        self.master.title('Authentication')
+        self.master.geometry('400x400') # self-note: This should not be here
+        self.master.resizable(False, False) # self-note: This too prolly
+        self.btn1 = tk.Button(self.frame, text = 'Login', bg='#32B448', fg='white', width = 20, command = self.login).pack(side='bottom')
+        self.btn2 = tk.Button(self.frame, text='Quit', width=20, command = self.close_window).pack()
+        self.frame.pack()
 
 
-# User-name exntry box here
-user = tk.Entry(window, width=20)
-user.insert(0,"Username: ")
-user.bind("<FocusIn>", clear_entry)
-user.place(relx=0.5, rely=0.3, anchor="center")
+    def close_window(self):
+        pass
 
-#Password entry box
-password = tk.Entry(window, show="*", width=20)
-password.place(relx=0.5, rely=0.4, anchor="center")
-
-# Buttonss to Login and close window
-btn = Button(window, text='Login', command=login)
-# btn.grid(row=4, column=2)
-btn.place(relx=0.5, rely=0.5, anchor="center")
-
-#Closing window box
-btn1 = Button(window, text='Quit', command=closeBox)
-btn1.place(relx=0.5, rely=0.6, anchor="center")
+    def login(self):
+        pass
 
 
-window.mainloop()
 
+def main():
+    root = tk.Tk()
+    app = app1(root)
+    root.mainloop()
 
+if __name__ == '__main__':
+    main()
