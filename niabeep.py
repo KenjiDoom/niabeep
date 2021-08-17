@@ -6,22 +6,29 @@ class app1:
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
+        #self.frame.pack(anchor='center')
         self.master.title('Authentication')
 
-        self.frame1 = tk.Frame(self.master, width=250, height=270, relief='raise', bd=8)
-        self.frame1.pack(anchor='center')
+        self.frame1 = tk.Frame(self.master, width=250, height=250, relief='raise', bd=8)
+        self.frame1.place(relx=0.5, rely=0.4, anchor='center')
 
-        self.display_email = tk.Label(self.frame, text='Email ', width=8).pack()
-        self.email = tk.Entry(self.frame, text='email', bd=2, width=15).pack()
-        #self.email.bind(0, "Password: ")
+        # Email Entry
+        self.email = tk.Entry(self.frame1, text='Email ', bd=2, width=20, relief="solid")
+        self.email.place(relx=0.5, rely=0.40, anchor="center")
 
-        self.btn1 = tk.Button(self.frame, text = 'Login', bg='#32B448', fg='white', width = 10, command = self.login).pack(side='left')
-        self.btn2 = tk.Button(self.frame, text='Quit', width=10, command = self.close_window).pack(side='right')
-        #self.email = tk.Entry(self.frame, width=20, text='Email: ', bg='#32B448').pack()
-        #self.email.pack(side='bottom')
+        # Password Entry
+        self.password = tk.Entry(self.frame1, text='Email', bd=2, width=20)
+        self.password.place(relx=0.5, rely=0.60, anchor="center")
 
-        #self.frame = tk.Frame(self.master, width=250, height=270, relief='raise', bd=8)
-        self.frame.pack()
+        # Login Button
+        self.btn1 = tk.Button(self.frame1, text = 'Login', bg='#32B448', fg='white', width = 10, command = self.login)
+        self.btn1.place(relx=0.5, rely=0.80, anchor="center")
+
+        # Quit button
+        #self.btn2 = tk.Button(self.frame1, text='Cancel', width=4, command = self.close_window)
+        #self.btn2.pack(anchor="center")
+
+        self.frame.pack(anchor='center')
 
 
     def close_window(self):
