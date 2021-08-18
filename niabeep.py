@@ -13,11 +13,11 @@ class app1:
         self.frame1.place(relx=0.5, rely=0.4, anchor='center')
 
         # Email Entry
-        self.email = tk.Entry(self.frame1, text='Email ', bd=2, width=20, relief="solid")
+        self.email = tk.Entry(self.frame1, text='Email ', bd=1, width=20)
         self.email.place(relx=0.5, rely=0.40, anchor="center")
 
         # Password Entry
-        self.password = tk.Entry(self.frame1, text='Email', bd=2, width=20)
+        self.password = tk.Entry(self.frame1, text='Email', bd=1, width=20)
         self.password.place(relx=0.5, rely=0.60, anchor="center")
 
         # Login Button
