@@ -14,7 +14,7 @@ class app1:
 
         # Login Message Text
         self.login_message = tk.Label(self.frame1, width=20, text='Login into your account', relief='raise', font=("Times", 14))
-        self.login_message.place(relx=0.5, rely=0.05, anchor="center")
+        self.login_message.place(relx=0.5, rely=0.10, anchor="center")
 
         self.email_message = tk.Label(self.frame1, width=10, text='Email: ', relief='flat', font=("Times", 11))
         self.email_message.place(relx=0.15, rely=0.28, anchor="center")
