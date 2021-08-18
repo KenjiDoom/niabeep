@@ -12,12 +12,16 @@ class app1:
         self.frame1 = tk.Frame(self.master, width=250, height=250, relief='raise', bd=8)
         self.frame1.place(relx=0.5, rely=0.4, anchor='center')
 
+        # Login Login Text
+        self.login_message = tk.Label(self.frame1, width=20, text='Login into your account', relief='raise', font=("Helvetica", 14))
+        self.login_message.place(relx=0.5, rely=0.10, anchor="center")
+
         # Email Entry
-        self.email = tk.Entry(self.frame1, text='Email ', bd=1, width=20)
-        self.email.place(relx=0.5, rely=0.40, anchor="center")
+        self.email = tk.Entry(self.frame1, text='Email', bd=1, width=20)
+        self.email.place(relx=0.5, rely=0.35, anchor="center")
 
         # Password Entry
-        self.password = tk.Entry(self.frame1, text='Email', bd=1, width=20)
+        self.password = tk.Entry(self.frame1, text='Password', bd=1, width=20)
         self.password.place(relx=0.5, rely=0.60, anchor="center")
 
         # Login Button
