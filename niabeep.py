@@ -32,12 +32,12 @@ class app1:
         self.password.place(relx=0.5, rely=0.60, anchor="center")
 
         # Login Button
-        self.btn1 = tk.Button(self.frame1, text = 'Login', bg='#32B448', fg='white', width = 10, command = self.login)
-        self.btn1.place(relx=0.5, rely=0.80, anchor="center")
+        self.btn1 = tk.Button(self.frame1, text = 'Login', bg='#32B448', fg='white', width = 8, command = self.login)
+        self.btn1.place(relx=0.3, rely=0.80, anchor="center")
 
-        # Quit button
-        #self.btn2 = tk.Button(self.frame1, text='Cancel', width=4, command = self.close_window)
-        #self.btn2.pack(anchor="center")
+        # Cancel button
+        self.btn2 = tk.Button(self.frame1, text='Cancel', bg='#b41f24', fg='white', width=8, command = self.close_window)
+        self.btn2.place(relx=0.7, rely=0.80, anchor="center")
 
         self.frame.pack(anchor='center')
 
