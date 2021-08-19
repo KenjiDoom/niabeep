@@ -1,6 +1,7 @@
 import tkinter as tk
-
-# I have no idea as to what is going on
+import smtplib, ssl
+import os
+import json
 
 class app1:
     def __init__(self, master):
@@ -45,13 +46,29 @@ class app1:
     def close_window(self):
         self.master.destroy()
 
-    def login(self): # Login Notifaction
+
+
+    def login(self):
         email = self.email.get()
         password = self.password.get()
-        print(email)
-        print(password)
         self.email.delete(0, 'end')
         self.password.delete(0, 'end')
+        gmail_server = smtplib.SMTP('smtp.gmail.com:587')
+        gmail_server.starttls()
+        try:
+            gmail_server.login(email, password)
+            resp = True
+            print('Password Correct') # START NEW CLASS WINDOW AND CLOSE OLD WINDOW
+        except:
+            resp = False
+            print('Incorrect Password')
+
+        self.email.delete(0, 'end')
+        self.password.delete(0, 'end')
+        gmail_server.quit()
+        return resp
+
+
 
 def main():
     root = tk.Tk()
