@@ -45,8 +45,11 @@ class app1:
     def close_window(self):
         self.master.destroy()
 
-    def login(self):
-        pass
+    def login(self): # Login Notifaction
+        email = self.email.get()
+        password = self.password.get()
+        print(email)
+        print(password)
 
 
 def main():
