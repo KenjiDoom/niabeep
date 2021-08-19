@@ -2,8 +2,11 @@ import tkinter as tk
 import smtplib, ssl
 import os
 import json
-
 class app1:
+    def __init__(self, master):
+        pass
+
+class app2:
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
@@ -47,7 +50,6 @@ class app1:
         self.master.destroy()
 
 
-
     def login(self):
         email = self.email.get()
         password = self.password.get()
@@ -59,6 +61,16 @@ class app1:
             gmail_server.login(email, password)
             resp = True
             print('Password Correct') # START NEW CLASS WINDOW AND CLOSE OLD WINDOW
+            creds = {
+                    "email": "{}".format(email),
+                    "password": "{}".format(password),
+            }
+            json_object = json.dumps(creds, indent = 4)
+
+            with open('creds.json', "w") as output:
+                output.write(json_object)
+                output.close()
+            # Run Third Program
         except:
             resp = False
             print('Incorrect Password')
@@ -75,9 +87,33 @@ def main():
     root.geometry("400x400")
     root['background']='#1091E4'
     root.resizable(False, False)
-    app = app1(root)
+    app = app2(root) # Login APP is running
     root.mainloop()
 
 
+
+def auto():# Self-note: This is where the automation happens. The scanning for creds and checking if they exists or not
+    if os.path.exists('creds.json'):
+        print('Testing Creds...')
+        with open('creds.json') as data:
+            data = json.load(data)
+            gmail_server = smtplib.SMTP('smtp.gmail.com:587')
+            gmail_server.starttls()
+            try:
+                gmail_server.login(data['email'], data['password'])
+                resp = True
+                print('Password Correct') # Start SENDER APP
+                gmail_server.quit()
+            except:
+                resp = False
+                gmail_server.quit()
+                print('Inocrrent Password') # Start login app
+                main()
+                return resp
+    else:
+        main()
+
+
+
 if __name__ == '__main__':
-    main()
+    auto()
