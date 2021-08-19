@@ -28,7 +28,7 @@ class app1:
         self.password_message.place(relx=0.20, rely=0.52, anchor="center")
 
         # Password Entry
-        self.password = tk.Entry(self.frame1, text='Password', bd=1, width=25)
+        self.password = tk.Entry(self.frame1, show='*', bd=1, width=25)
         self.password.place(relx=0.5, rely=0.60, anchor="center")
 
         # Login Button
@@ -50,7 +50,8 @@ class app1:
         password = self.password.get()
         print(email)
         print(password)
-
+        self.email.delete(0, 'end')
+        self.password.delete(0, 'end')
 
 def main():
     root = tk.Tk()
