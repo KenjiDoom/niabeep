@@ -1,3 +1,4 @@
+from tkinter import messagebox
 import tkinter as tk
 import smtplib, ssl
 import os
@@ -56,8 +57,6 @@ class app():
     def login(self):
         email = self.email.get()
         password = self.password.get()
-        self.email.delete(0, 'end')
-        self.password.delete(0, 'end')
         gmail_server = smtplib.SMTP('smtp.gmail.com:587')
         gmail_server.starttls()
         try:
@@ -74,15 +73,15 @@ class app():
                 output.write(json_object)
                 output.close()
                 sender_gui()
-        except:
+        except: # add pop-up box message
             resp = False
-            print('Incorrect Password')
+            messagebox.showerror('Fail',  'Password Incorrect or Email Incorrect')
+            #print('Incorrect Password')
+            self.password.delete(0, 'end')
 
-        self.email.delete(0, 'end')
-        self.password.delete(0, 'end')
-        self.master.destroy()
         gmail_server.quit()
         return resp
+
 #----------------------------------------------#
 
 def login_gui(): # Self-Note: Login UI
@@ -113,16 +112,11 @@ def auto():# Self-note: This is where the automation happens. The scanning for c
             try:
                 gmail_server.login(data['email'], data['password'])
                 resp = True
-                #gmail_server.quit()
-                print('Password Correct') # Start SENDER APP
                 sender_gui()
-                #gmail_server.quit()
             except:
                 resp = False
                 gmail_server.quit()
                 return resp
-                print('Inocrrent Password') # Start login app
-                print("LOGIN APP STARTUP HERE")
                 login_gui()
     else:
         login_gui()
