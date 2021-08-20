@@ -2,11 +2,16 @@ import tkinter as tk
 import smtplib, ssl
 import os
 import json
-class app1:
+class app2: # Sending Emails
     def __init__(self, master):
-        pass
+        self.master = master
+        self.frame = tk.Frame(self.master)
+        self.master.title('Gmail Email Sender')
 
-class app2:
+        self.frame.pack(anchor='center')
+
+#-------------------------------------------------#
+class app():
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
@@ -45,10 +50,8 @@ class app2:
 
         self.frame.pack(anchor='center')
 
-
     def close_window(self):
         self.master.destroy()
-
 
     def login(self):
         email = self.email.get()
@@ -70,28 +73,36 @@ class app2:
             with open('creds.json', "w") as output:
                 output.write(json_object)
                 output.close()
-            # Run Third Program
+                sender_gui()
         except:
             resp = False
             print('Incorrect Password')
 
         self.email.delete(0, 'end')
         self.password.delete(0, 'end')
+        self.master.destroy()
         gmail_server.quit()
         return resp
+#----------------------------------------------#
 
-
-
-def main():
+def login_gui(): # Self-Note: Login UI
     root = tk.Tk()
     root.geometry("400x400")
     root['background']='#1091E4'
     root.resizable(False, False)
-    app = app2(root) # Login APP is running
+    login_gui = app(root)
     root.mainloop()
 
 
+def sender_gui(): # Self-Note: Email Sender UI
+    root = tk.Tk()
+    print("RAN")
+    root.geometry("500x500")
+    root.resizable(False, False)
+    sender_gui = app2(root)
+    root.mainloop()
 
+#-------------------------------------------------#
 def auto():# Self-note: This is where the automation happens. The scanning for creds and checking if they exists or not
     if os.path.exists('creds.json'):
         print('Testing Creds...')
@@ -102,16 +113,19 @@ def auto():# Self-note: This is where the automation happens. The scanning for c
             try:
                 gmail_server.login(data['email'], data['password'])
                 resp = True
+                #gmail_server.quit()
                 print('Password Correct') # Start SENDER APP
-                gmail_server.quit()
+                sender_gui()
+                #gmail_server.quit()
             except:
                 resp = False
                 gmail_server.quit()
-                print('Inocrrent Password') # Start login app
-                main()
                 return resp
+                print('Inocrrent Password') # Start login app
+                print("LOGIN APP STARTUP HERE")
+                login_gui()
     else:
-        main()
+        login_gui()
 
 
 
