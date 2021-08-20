@@ -29,7 +29,7 @@ class app2: # Sending Emails
         self.frame1 = tk.Frame(self.master)
         self.frame1.place(relx=0.5, rely=0.62, anchor='center', width=380, height=350)
 
-        self.message = tk.Entry(self.frame1,bg='white', fg='black',)
+        self.message = tk.Text(self.frame1, bg='white', fg='black',)
         #self.message.place(relx=0.5, rely=0.62, anchor='center', width=380, height=350)
         self.message.pack(fill='both', pady=5, padx=5, expand=True)
 
