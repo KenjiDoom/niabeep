@@ -3,16 +3,25 @@ import tkinter as tk
 import smtplib, ssl
 import os
 import json
+
+
 class app2: # Sending Emails
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
         self.master.title('Gmail Email Sender')
+        # Who the message is being sent too
+        self.to = tk.Entry(self.master, width=30, text='To', relief='raise')
+        self.to.place(relx=0.5, rely=0.1, anchor='s')
+
+        # Subject of the message
+        self.subject = tk.Entry(self.master, width=30, text='Subject: ', relief='raise')
+        self.subject.place(relx=0.5, rely=0.3, anchor='s')
 
         self.frame.pack(anchor='center')
 
 #-------------------------------------------------#
-class app():
+class app(): # Self-Note: Fix Error Box Not closing correctly
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
@@ -63,6 +72,7 @@ class app():
             gmail_server.login(email, password)
             resp = True
             print('Password Correct') # START NEW CLASS WINDOW AND CLOSE OLD WINDOW
+            #sender_gui()
             creds = {
                     "email": "{}".format(email),
                     "password": "{}".format(password),
@@ -75,8 +85,7 @@ class app():
                 sender_gui()
         except: # add pop-up box message
             resp = False
-            messagebox.showerror('Fail',  'Password Incorrect or Email Incorrect')
-            #print('Incorrect Password')
+            messagebox.showerror('oops',  'Incorrect email or password')
             self.password.delete(0, 'end')
 
         gmail_server.quit()
@@ -95,7 +104,6 @@ def login_gui(): # Self-Note: Login UI
 
 def sender_gui(): # Self-Note: Email Sender UI
     root = tk.Tk()
-    print("RAN")
     root.geometry("500x500")
     root.resizable(False, False)
     sender_gui = app2(root)
@@ -124,4 +132,4 @@ def auto():# Self-note: This is where the automation happens. The scanning for c
 
 
 if __name__ == '__main__':
-    auto()
+    sender_gui()
