@@ -10,13 +10,29 @@ class app2: # Sending Emails
         self.master = master
         self.frame = tk.Frame(self.master)
         self.master.title('Gmail Email Sender')
+
         # Who the message is being sent too
-        self.to = tk.Entry(self.master, width=30, text='To', relief='raise')
-        self.to.place(relx=0.5, rely=0.1, anchor='s')
+        self.too = tk.Label(self.master, width=10, bd=1.5, text='To:', relief='raise', bg='grey', fg='black')
+        self.too.place(relx=0.2, rely=0.1, anchor='e')
+
+        self.to = tk.Entry(self.master, width=33, text='To', relief='raise', bd=1.5)
+        self.to.place(relx=0.5, rely=0.1, anchor='center')
 
         # Subject of the message
-        self.subject = tk.Entry(self.master, width=30, text='Subject: ', relief='raise')
-        self.subject.place(relx=0.5, rely=0.3, anchor='s')
+        self.sub = tk.Label(self.master, width=10, text='Subject:', relief='raise', bd=1.5, bg='grey', fg='black')
+        self.sub.place(relx=0.2, rely=0.2, anchor='e')
+
+        self.subject = tk.Entry(self.master, width=33, text='Subject: ', relief='raise', bd=1.5)
+        self.subject.place(relx=0.5, rely=0.2, anchor='center')
+
+        # Message Frame
+        self.frame1 = tk.Frame(self.master)
+        self.frame1.place(relx=0.5, rely=0.62, anchor='center', width=380, height=350)
+
+        self.message = tk.Entry(self.frame1,bg='white', fg='black',)
+        #self.message.place(relx=0.5, rely=0.62, anchor='center', width=380, height=350)
+        self.message.pack(fill='both', pady=5, padx=5, expand=True)
+
 
         self.frame.pack(anchor='center')
 
