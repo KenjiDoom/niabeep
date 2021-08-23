@@ -42,12 +42,14 @@ class app2: # Sending Emails
         to = self.to.get()
         subject = self.subject.get()
         message = self.message.get("1.0",'end-1c')
+        email_construction = 'Subject: {}\n\n{}'.format(subject, message)
         with open('creds.json') as data:
             data = json.load(data)
             context = ssl.create_default_context()
             with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
                 server.login(data['email'], data['password'])
-                server.sendmail(data['email'], to, subject, message)
+                server.sendmail(data['email'], to, email_construction)
+                messagebox.showinfo('SENT',  'SENT')
                 print('sent')
 
 #-------------------------------------------------#
