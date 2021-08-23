@@ -12,30 +12,38 @@ class app2: # Sending Emails
         self.master.title('Gmail Email Sender')
 
         # Who the message is being sent too
-        self.too = tk.Label(self.master, width=10, bd=1.5, text='To:', relief='raise', bg='grey', fg='black')
+        self.too = tk.Label(self.master, width=10, bd=1.5, text='To:', relief='flat', font=("Times"))
         self.too.place(relx=0.2, rely=0.1, anchor='e')
 
-        self.to = tk.Entry(self.master, width=33, text='To', relief='raise', bd=1.5)
+        self.to = tk.Entry(self.master, width=33, text='To', relief='flat', bd=1.5)
         self.to.place(relx=0.5, rely=0.1, anchor='center')
 
         # Subject of the message
-        self.sub = tk.Label(self.master, width=10, text='Subject:', relief='raise', bd=1.5, bg='grey', fg='black')
+        self.sub = tk.Label(self.master, width=10, text='Subject:', relief='flat', font=("Times"))
         self.sub.place(relx=0.2, rely=0.2, anchor='e')
 
-        self.subject = tk.Entry(self.master, width=33, text='Subject: ', relief='raise', bd=1.5)
+        self.subject = tk.Entry(self.master, width=33, text='Subject: ', relief='flat')
         self.subject.place(relx=0.5, rely=0.2, anchor='center')
 
         # Message Frame
         self.frame1 = tk.Frame(self.master)
-        self.frame1.place(relx=0.5, rely=0.62, anchor='center', width=380, height=350)
+        self.frame1.place(relx=0.4, rely=0.62, anchor='center', width=380, height=350)
 
         self.message = tk.Text(self.frame1, bg='white', fg='black',)
-        #self.message.place(relx=0.5, rely=0.62, anchor='center', width=380, height=350)
         self.message.pack(fill='both', pady=5, padx=5, expand=True)
 
+        self.send = tk.Button(self.master, width=7, text='Send', relief='flat', fg='black', bg='#32B448', font=("Times"))
+        self.send.place(relx=0.9, rely=0.62, anchor='center')
 
         self.frame.pack(anchor='center')
 
+
+    def sending(self):
+        to = self.to.get()
+        subject = self.subject.get()
+        message = self.message.get()
+
+        print(subject + message, + to)
 #-------------------------------------------------#
 class app(): # Self-Note: Fix Error Box Not closing correctly
     def __init__(self, master):
@@ -121,6 +129,7 @@ def login_gui(): # Self-Note: Login UI
 def sender_gui(): # Self-Note: Email Sender UI
     root = tk.Tk()
     root.geometry("500x500")
+    root['background']='#1091E4'
     root.resizable(False, False)
     sender_gui = app2(root)
     root.mainloop()
@@ -149,3 +158,4 @@ def auto():# Self-note: This is where the automation happens. The scanning for c
 
 if __name__ == '__main__':
     sender_gui()
+    #login_gui()
