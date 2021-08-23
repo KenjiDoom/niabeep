@@ -32,7 +32,7 @@ class app2: # Sending Emails
         self.message = tk.Text(self.frame1, bg='white', fg='black',)
         self.message.pack(fill='both', pady=5, padx=5, expand=True)
 
-        self.send = tk.Button(self.master, width=7, text='Send', relief='flat', fg='black', bg='#32B448', font=("Times"))
+        self.send = tk.Button(self.master, width=7, text='Send', relief='flat', fg='black', bg='#32B448', font=("Times"), command = self.sending)
         self.send.place(relx=0.9, rely=0.62, anchor='center')
 
         self.frame.pack(anchor='center')
@@ -41,9 +41,15 @@ class app2: # Sending Emails
     def sending(self):
         to = self.to.get()
         subject = self.subject.get()
-        message = self.message.get()
+        message = self.message.get("1.0",'end-1c')
+        with open('creds.json') as data:
+            data = json.load(data)
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+                server.login(data['email'], data['password'])
+                server.sendmail(data['email'], to, subject, message)
+                print('sent')
 
-        print(subject + message, + to)
 #-------------------------------------------------#
 class app(): # Self-Note: Fix Error Box Not closing correctly
     def __init__(self, master):
