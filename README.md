@@ -14,4 +14,5 @@ pacman -S tk
 ```
 python niabeep.py
 ```
+![](prototype/login_prompt.png) ![](sending_prompt.png)
 
