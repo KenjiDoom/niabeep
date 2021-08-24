@@ -17,5 +17,5 @@ python niabeep.py
 
 Login prompt             |  Sending email prompt
 :-------------------------:|:-------------------------:
-![](prototype/login_prompt.png)|![](sending_prompt.png)
+![](prototype/login_prompt.png)|![](prototype/sending_prompt.png)
 
