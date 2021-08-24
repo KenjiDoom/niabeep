@@ -50,7 +50,7 @@ class app2: # Sending Emails
                 server.login(data['email'], data['password'])
                 server.sendmail(data['email'], to, email_construction)
                 messagebox.showinfo('SENT',  'SENT')
-                print('sent')
+                #print('sent')
 
 #-------------------------------------------------#
 class app(): # Self-Note: Fix Error Box Not closing correctly
@@ -103,8 +103,6 @@ class app(): # Self-Note: Fix Error Box Not closing correctly
         try:
             gmail_server.login(email, password)
             resp = True
-            print('Password Correct') # START NEW CLASS WINDOW AND CLOSE OLD WINDOW
-            #sender_gui()
             creds = {
                     "email": "{}".format(email),
                     "password": "{}".format(password),
@@ -114,8 +112,9 @@ class app(): # Self-Note: Fix Error Box Not closing correctly
             with open('creds.json', "w") as output:
                 output.write(json_object)
                 output.close()
+                self.master.destroy()
                 sender_gui()
-        except: # add pop-up box message
+        except:
             resp = False
             messagebox.showerror('oops',  'Incorrect email or password')
             self.password.delete(0, 'end')
@@ -143,7 +142,7 @@ def sender_gui(): # Self-Note: Email Sender UI
     root.mainloop()
 
 #-------------------------------------------------#
-def auto():# Self-note: This is where the automation happens. The scanning for creds and checking if they exists or not
+def auto():
     if os.path.exists('creds.json'):
         print('Testing Creds...')
         with open('creds.json') as data:
@@ -165,5 +164,4 @@ def auto():# Self-note: This is where the automation happens. The scanning for c
 
 
 if __name__ == '__main__':
-    sender_gui()
-    #login_gui()
+    auto()
