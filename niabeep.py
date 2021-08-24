@@ -4,8 +4,7 @@ import smtplib, ssl
 import os
 import json
 
-
-class app2: # Sending Emails
+class app2:
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
@@ -50,10 +49,8 @@ class app2: # Sending Emails
                 server.login(data['email'], data['password'])
                 server.sendmail(data['email'], to, email_construction)
                 messagebox.showinfo('SENT',  'SENT')
-                #print('sent')
 
-#-------------------------------------------------#
-class app(): # Self-Note: Fix Error Box Not closing correctly
+class app():
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
@@ -122,9 +119,8 @@ class app(): # Self-Note: Fix Error Box Not closing correctly
         gmail_server.quit()
         return resp
 
-#----------------------------------------------#
 
-def login_gui(): # Self-Note: Login UI
+def login_gui():
     root = tk.Tk()
     root.geometry("400x400")
     root['background']='#1091E4'
@@ -133,7 +129,7 @@ def login_gui(): # Self-Note: Login UI
     root.mainloop()
 
 
-def sender_gui(): # Self-Note: Email Sender UI
+def sender_gui():
     root = tk.Tk()
     root.geometry("500x500")
     root['background']='#1091E4'
@@ -141,10 +137,9 @@ def sender_gui(): # Self-Note: Email Sender UI
     sender_gui = app2(root)
     root.mainloop()
 
-#-------------------------------------------------#
+
 def auto():
     if os.path.exists('creds.json'):
-        print('Testing Creds...')
         with open('creds.json') as data:
             data = json.load(data)
             gmail_server = smtplib.SMTP('smtp.gmail.com:587')
