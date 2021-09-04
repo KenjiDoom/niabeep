@@ -28,11 +28,17 @@ class app2:
         self.frame1 = tk.Frame(self.master)
         self.frame1.place(relx=0.4, rely=0.62, anchor='center', width=380, height=350)
 
+        # Text box
         self.message = tk.Text(self.frame1, bg='white', fg='black',)
         self.message.pack(fill='both', pady=5, padx=5, expand=True)
 
+        # Send Button
         self.send = tk.Button(self.master, width=7, text='Send', relief='flat', fg='black', bg='#32B448', font=("Times"), command = self.sending)
         self.send.place(relx=0.9, rely=0.62, anchor='center')
+
+        # Cancel button
+        self.cancel = tk.Button(self.master, width=7, text='Cancel', relief='flat', fg='black', bg='#ff0000', font=("Times"), command = self.close_window)
+        self.cancel.place(relx=0.9, rely=0.67, anchor='center')
 
         self.frame.pack(anchor='center')
 
@@ -49,6 +55,9 @@ class app2:
                 server.login(data['email'], data['password'])
                 server.sendmail(data['email'], to, email_construction)
                 messagebox.showinfo('SENT',  'SENT')
+
+    def close_window(self):
+        self.master.destroy()
 
 class app():
     def __init__(self, master):
