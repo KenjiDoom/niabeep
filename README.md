@@ -23,6 +23,6 @@ Overall we get an approval rating of 7/10 this GUI needs more work, but overall 
 
 ### TO-DO
 - [] - Sending Attachments
-- [] - Cancel Button
+- [X] - Cancel Button
 - [] - HTML Formatting
 - [] - Custom Fonts? 
